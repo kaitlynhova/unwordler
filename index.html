@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unwordler — Wordle Cracker</title>
+  <meta name="description" content="Unwordler is a Wordle solver: enter the clues from your last guess and see every five-letter word that still fits.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <button id="reset" class="icon-btn" title="Reset" aria-label="Reset clues">↺</button>
+      <h1 class="title">
+        <span class="mut">UN</span><span>WORDLE</span><span class="mut">R</span>
+      </h1>
+      <button id="theme" class="icon-btn" title="Toggle theme" aria-label="Toggle light or dark theme">☾</button>
+    </header>
+
+    <main class="grid">
+      <div class="col-left">
+        <section class="greens-section">
+          <div class="label-row">
+            <span class="swatch" style="background:var(--green)"></span>Letters in the right spot
+          </div>
+          <div class="green-tiles" id="green-tiles"></div>
+          <div class="hint-small">Type letters, or tap a tile then use the keyboard below</div>
+        </section>
+
+        <section class="clue-inputs">
+          <label class="clue-label">
+            <span class="label-row"><span class="swatch" style="background:var(--yellow)"></span>In the word, wrong spot</span>
+            <input id="present" class="clue-input" data-accent="yellow" placeholder="ABC" autocomplete="off" autocapitalize="characters" spellcheck="false">
+          </label>
+          <label class="clue-label">
+            <span class="label-row"><span class="swatch" style="background:var(--gray)"></span>Not in the word</span>
+            <input id="absent" class="clue-input" data-accent="muted" placeholder="XYZ" autocomplete="off" autocapitalize="characters" spellcheck="false">
+          </label>
+        </section>
+
+        <section class="keyboard">
+          <div id="keyboard-rows"></div>
+          <div class="kb-hint">Tap a key to cycle: <b class="yellow">wrong spot</b> → <b>not in word</b> → clear</div>
+        </section>
+      </div>
+
+      <section class="results">
+        <div class="results-head">
+          <span class="count"><b id="count">0</b> <span class="count-label" id="count-label">words fit</span></span>
+          <span class="hint" id="hint">Add clues from your last guess</span>
+        </div>
+        <div class="empty" id="empty" hidden>No words fit those clues. Double-check a letter?</div>
+        <div class="results-grid" id="results-grid"></div>
+        <div class="more" id="more" hidden>Showing the first 120. Add a clue to narrow it down.</div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="https://www.nytimes.com/games/wordle" class="strong">Wordle</a> is by
+      <a href="https://twitter.com/powerlanguish" class="strong">Josh Wardle</a>. All kudos and free coffee go to him.
+      Unwordler exists because we didn't know enough five-letter words but knew how to find them.
+      Powered by <a href="#" class="brand">Hova Labs</a>.
+    </footer>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+  </div>
+
+  <script src="./words.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
